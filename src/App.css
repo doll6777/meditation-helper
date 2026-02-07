@@ -283,6 +283,86 @@
   display: none;
 }
 
+/* 호흡법 정보 섹션 */
+.method-info-section {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.method-info-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.method-info-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.info-icon {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.toggle-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.toggle-arrow.open {
+  transform: rotate(180deg);
+}
+
+.method-info-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 0 12px 12px;
+  margin-top: -1px;
+  border: 1px solid transparent;
+}
+
+.method-info-content.visible {
+  max-height: 300px;
+  padding: 1rem;
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.08);
+  border-top: none;
+}
+
+.method-explanation {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 0.75rem 0;
+  text-align: left;
+}
+
+.pattern-display {
+  font-size: 0.8rem;
+  color: rgba(139, 92, 246, 0.9);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+}
+
 /* 호흡 섹션 */
 .breathing-section {
   width: 100%;

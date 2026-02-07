@@ -13,10 +13,12 @@ export default function App() {
   const [resetKey, setResetKey] = useState(0)
   const [affirmation, setAffirmation] = useState('')
   const [affirmationVisible, setAffirmationVisible] = useState(false)
+  const [showMethodInfo, setShowMethodInfo] = useState(false)
   const affirmationIndexRef = useRef(0)
 
   const category = categories.find((c) => c.id === categoryId) || categories[0]
   const pattern = category.pattern
+  const methodExplanation = t(lang, category.methodKey)
 
   // 명상 문구 가져오기
   const getAffirmations = useCallback(() => {
@@ -122,12 +124,33 @@ export default function App() {
                 setIsRunning(false)
                 setCycleCount(0)
                 setResetKey((k) => k + 1)
+                setShowMethodInfo(false)
               }}
             >
               <span className="category-name">{t(lang, c.nameKey)}</span>
               <span className="category-desc">{t(lang, c.descKey)}</span>
             </button>
           ))}
+        </div>
+        
+        {/* 호흡법 과학적 근거 설명 */}
+        <div className="method-info-section">
+          <button 
+            className="method-info-toggle"
+            onClick={() => setShowMethodInfo(!showMethodInfo)}
+            aria-expanded={showMethodInfo}
+          >
+            <span className="info-icon">ℹ</span>
+            {t(lang, 'methodInfo')}
+            <span className={`toggle-arrow ${showMethodInfo ? 'open' : ''}`}>▼</span>
+          </button>
+          <div className={`method-info-content ${showMethodInfo ? 'visible' : ''}`}>
+            <p className="method-explanation">{methodExplanation}</p>
+            <p className="pattern-display">
+              {t(lang, 'inhale')} {pattern[0]}s → {pattern[1] > 0 ? `${t(lang, 'hold')} ${pattern[1]}s → ` : ''}
+              {t(lang, 'exhale')} {pattern[2]}s{pattern[3] > 0 ? ` → ${t(lang, 'hold')} ${pattern[3]}s` : ''}
+            </p>
+          </div>
         </div>
       </section>
 
